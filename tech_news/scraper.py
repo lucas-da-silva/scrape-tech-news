@@ -26,9 +26,10 @@ def scrape_updates(html_content: str) -> list[str] | None:
     )
 
 
-# Requisito 3
-def scrape_next_page_link(html_content):
-    """Seu código deve vir aqui"""
+def scrape_next_page_link(html_content: str) -> str | None:
+    soup = BeautifulSoup(html_content, "html.parser")
+    next_page = soup.find("a", {"class": "next"})
+    return next_page["href"] if next_page else None
 
 
 # Requisito 4
