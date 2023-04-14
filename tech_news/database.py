@@ -6,7 +6,6 @@
 from pymongo import MongoClient
 from decouple import config
 import copy
-import re
 
 DB_HOST = config("DB_HOST", default="localhost")
 DB_PORT = config("DB_PORT", default="27017")
@@ -38,18 +37,3 @@ def search_news(query):
 
 def get_collection():
     return db.news
-
-
-def find_news_by_title(title: str) -> list[dict]:
-    return list(db.news.find({"title": {"$regex": title, "$options": "i"}}))
-
-
-def find_news_by_date(date: str) -> list[dict]:
-    return list(db.news.find({"timestamp": {"$regex": date}}))
-
-
-def find_news_by_category(category: str) -> list[dict]:
-    regex_category = re.escape(category)
-    return list(
-        db.news.find({"category": {"$regex": regex_category, "$options": "i"}})
-    )
