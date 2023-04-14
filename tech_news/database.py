@@ -37,3 +37,7 @@ def search_news(query):
 
 def get_collection():
     return db.news
+
+
+def find_news_by_title(title: str):
+    return list(db.news.find({"title": {"$regex": title}}))
