@@ -39,5 +39,9 @@ def get_collection():
     return db.news
 
 
-def find_news_by_title(title: str):
+def find_news_by_title(title: str) -> list[dict]:
     return list(db.news.find({"title": {"$regex": title}}))
+
+
+def find_news_by_date(date: str) -> list[dict]:
+    return list(db.news.find({"timestamp": {"$regex": date}}))
