@@ -90,7 +90,7 @@ def scrape_news(html_content: str) -> dict[str, str | int | None]:
     }
 
 
-def get_tech_news(amount: int):
+def get_tech_news(amount: int) -> dict[str, str | int | None]:
     page_url = BLOG_TRYBE_URL
     posts = []
     while len(posts) < amount:
