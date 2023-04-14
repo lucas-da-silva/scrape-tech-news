@@ -1,8 +1,11 @@
 import requests
 from time import sleep
 from bs4 import BeautifulSoup
+from tech_news.database import create_news
+
 
 HEADERS = {"user-agent": "Fake user-agent"}
+BLOG_TRYBE_URL = "https://blog.betrybe.com"
 
 
 def fetch(url: str) -> str | None:
@@ -73,7 +76,7 @@ def scrape_category(soup: BeautifulSoup) -> str | None:
     return category.text if category else None
 
 
-def scrape_news(html_content: str):
+def scrape_news(html_content: str) -> dict[str, str | int | None]:
     soup = BeautifulSoup(html_content, "html.parser")
 
     return {
@@ -87,6 +90,18 @@ def scrape_news(html_content: str):
     }
 
 
-# Requisito 5
-def get_tech_news(amount):
-    """Seu código deve vir aqui"""
+def get_tech_news(amount: int):
+    page_url = BLOG_TRYBE_URL
+    posts = []
+    while len(posts) < amount:
+        page = fetch(page_url)
+        post_links = scrape_updates(page)
+        for link in post_links:
+            if len(posts) >= amount:
+                break
+            post = scrape_news(fetch(link))
+            posts.append(post)
+        page_url = scrape_next_page_link(page)
+
+    create_news(posts)
+    return posts
