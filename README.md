@@ -1,8 +1,6 @@
 <h1 align="center">Raspar notícias de tecnologia</h1>
 
-<p align="center">
-    <img src="/.imgs/tech-news.png" width="100%" />
-</p>
+https://user-images.githubusercontent.com/104774396/234715383-78f9a96e-24fe-4936-b3c1-dcf31c8968b6.mp4
 
 ## Sobre o projeto
 
