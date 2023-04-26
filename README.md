@@ -43,7 +43,7 @@ $ python3 -m pip install -r dev-requirements.txt
 # Subir o banco de dados
 $ docker-compose up -d mongodb
 
-# Executar a raspagem de dados
+# Executar o script de raspagem de dados
 $ tech-news-analyzer
 
 # Executar testes
